@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import {router} from '../../routes.mjs'
 import "./login.css";
 import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
@@ -22,14 +21,14 @@ const Login = () => {
 
     useEffect(() =>{
         if(localStorage.getItem('user-info')){
-            navigate.push("/add");
+            navigate("/add");
         }
     }, [])
 
     async function login() {
         console.warn(email, password)
         let item = {email, password}
-        let result = await fetch("http://localhost:3000/login",{
+        let result = await fetch("http://localhost:8080/api/login",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,8 +38,9 @@ const Login = () => {
             body: JSON.stringify(item)
         });
         result = await result.json();
+        console.log(result);
         localStorage.setItem("user-info",JSON.stringify(result))
-        navigate.push("/add");
+        navigate("/add");
     }
     return (
         <div className='cover'>

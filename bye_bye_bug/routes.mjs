@@ -8,8 +8,10 @@ import {
 const router = express.Router();
 
 
-// router.route('/login')
-// .get((req, res) =>{App()})
+router.route('/login')
+.post((req, res) =>{
+    res.status(200).json({message: 'Login successful'})
+})
 
 router.route('/accounts')
     .get((req, res) =>  getRecords(Account, req, res))
