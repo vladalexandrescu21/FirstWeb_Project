@@ -1,14 +1,15 @@
 import express from 'express';
 import { Account, Proiect, Bug } from './repository.mjs';
 import {
-    getRecords, postRecord, deleteRecords, getRecord, putRecord, headRecord, patchRecord, deleteRecord, checkLogin
+    getRecords, postRecord, deleteRecords, getRecord, putRecord, headRecord, patchRecord, deleteRecord, checkLogin, checkProject
 } from './service.mjs'
 //import App from './src/App.js'
 
 const router = express.Router();
 
-// router.route('/register')
-// .get((req, res) => getRegister(req, res))
+router.route('/createProject').get((req, res) => { getIdList(Account,req, res)});
+
+router.route('/register').get((req, res) => { checkProject(Proiect, req, res)});
 
 router.route('/login').get((req, res) => checkLogin(Account, req, res));
 
@@ -25,15 +26,19 @@ router.route('/accounts/:id')
     .delete((req, res) =>  deleteRecord(Account, req, res))
 
 
-router.route('/proiecte')
-    .get((req, res) =>  getRecords(Proiect, req, res))
+router.route('/proiects')
+    .get((req, res) =>  getRecord(Proiect, req, res))
+    .head((req, res) => headRecord(Proiect, req,res))
     .post((req, res) =>  postRecord(Proiect, req, res))
     .delete((req, res) =>  deleteRecords(Proiect, req, res))
 
-router.route('/proiecte/:id')
+router.route('/proiects/:id')
     .get((req, res) =>  getRecord(Proiect, req, res))
     .head((req, res) =>  headRecord(Proiect, req, res))
-    .put((req, res) =>  putRecord(Proiect, req, res))
+    .put((req, res) =>  {
+        console.log("inside proiects put");
+        putRecord(Proiect, req, res);
+    })
     .patch((req, res) =>  patchRecord(Proiect, req, res))
     .delete((req, res) =>  deleteRecord(Proiect, req, res))
 

@@ -5,6 +5,7 @@ import {   BrowserRouter as Router,
 import './index.css';
 import Login from './components/login';
 import Register from './components/registerForm';
+import CreateProject from './components/createProject';
 
 console.log('index.js');
 
@@ -14,6 +15,7 @@ root.render(
         <Routes>
             <Route path="/"  element={<Login />}/>
             <Route path="/register"  element={<Register />}/>
+            <Route path='/createProject' element={<CreateProject/>}/>
         </Routes>
     </Router>
 );

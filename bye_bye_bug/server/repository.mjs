@@ -27,6 +27,10 @@ const Account = sequelize.define('account', {
     accountType: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    projectName: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 
@@ -41,16 +45,17 @@ const Proiect = sequelize.define('proiect', {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    repositoryLink: {
+    repoLink: {
         type: Sequelize.STRING,
         allowNull: false
     },
     idList: {
-        type: DataTypes.ARRAY(DataTypes.UUID),
-        allowNull: false
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true
     },
     bugList: {
-        type: DataTypes.ARRAY(DataTypes.UUID)
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true
     }
 });
 
