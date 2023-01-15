@@ -69,18 +69,27 @@ input:focus{
 }
 
 
+.bugDivM{
+    display: flex;
+    justify-content: center;
+    min-height: 200px;
+    column-gap: 3%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
 .bugDiv{
-    width: 80%;
-    height: 5em;
+    flex: 0 0 30%;
     background-color: rgb(0, 0, 0);
     color: white;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     transition: 0.5s;
-    border-radius: 0.25em;
+    border-radius: 1em;
+    padding-left: 1em;
     cursor: pointer;
-    margin: 2em auto;
 }
 
 .addBugBtn{
@@ -91,8 +100,9 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.7em;
+    font-size: 1em;
     transition: 0.5s;
+    white-space: nowrap;
     border-color: black;
     border-width: 0.3em;
     border-radius: 0.8em;
