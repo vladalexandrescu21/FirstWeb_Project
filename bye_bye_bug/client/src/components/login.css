@@ -20,7 +20,7 @@
 .cover{
     background-color: white;
     width: 30em;
-    height: 40em;
+    height: 41em;
     position: relative;
     border-radius: 1em;
     box-shadow: 0 0.188em 1.550em rgb(100, 156, 156);
@@ -62,6 +62,7 @@ input{
     border-radius: 0.25em;
     text-align: center;
     padding: 2em;
+    margin-bottom: 0.7em;
 }
 
 input:focus{
@@ -100,7 +101,7 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1em;
+    font-size: 0.75em;
     transition: 0.5s;
     white-space: nowrap;
     border-color: black;
