@@ -9,6 +9,21 @@ function valid(Model, payload) {
     }, true)
 }
 
+async function searchBugs(Model, request, response){
+    try{
+        var bugList = await Model.findAll({where: {accountEmail: request.query.accountEmail}});
+        if(bugList){
+            response.status(200).json(bugList);
+        }
+        else{
+            response.status(404).send({message: "no bugs"});
+        }
+        
+    }
+    catch(error){
+        response.status(500).json(error);
+    }
+}
 
 async function getIdList(Model, request, response) {
     try{
@@ -68,7 +83,9 @@ async function checkProject(Model, request, response){
 
 async function getRecords(Model, request, response){
     try{
+        console.log("before record");
         let records = await Model.findAll();
+        console.log("records");
         if(records.length > 0){
             response.status(200).json(records);
         }
@@ -82,10 +99,12 @@ async function getRecords(Model, request, response){
 
 async function postRecord(Model, request, response){
     try{
+        console.log("postRecord");
         //valid(Model, request.body)
         if(1 == 1){
-            //console.log("bun");
+            console.log("validare buna");
             let record = await Model.create(request.body);
+            console.log("record created");
             response.status(201) // status created
             //.location(`http://${request.headers.host}${request.baseUrl}${request.url}${request.url.endsWith('/') ? '' : '/'}${record.id}`)
             .location(`${record.id}`)
@@ -122,12 +141,16 @@ async function getRecord(Model, request, response){
 }
 
 async function putRecord(Model, request, response){
+    console.log("before record");
     try{
+        console.log("before record");
         let record = await Model.findOne({where: {name: request.params.id}});
-        // console.log("record", record);
+        console.log("record", record);
+        console.log("body", request.body)
         if(record){
             // if(valid(Model, request.body)){
                 await record.update(request.body);
+                console.log("record after update", record);
                 response.status(204).send();
             // }else{
             //     response.status(400).send();
@@ -187,5 +210,6 @@ async function deleteRecord(Model, request, response){
 
 
 export {
-    getRecords, postRecord, deleteRecords, getRecord, putRecord, headRecord, patchRecord, deleteRecord, checkLogin, checkProject,getIdList
+    getRecords, postRecord, deleteRecords, getRecord, putRecord, headRecord, patchRecord,
+     deleteRecord, checkLogin, checkProject,getIdList,searchBugs
 }

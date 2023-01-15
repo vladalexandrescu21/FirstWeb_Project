@@ -20,7 +20,7 @@
 .cover{
     background-color: white;
     width: 30em;
-    height: 35em;
+    height: 40em;
     position: relative;
     border-radius: 1em;
     box-shadow: 0 0.188em 1.550em rgb(100, 156, 156);
@@ -66,6 +66,39 @@ input{
 
 input:focus{
     outline-color: rgb(32, 177, 255);
+}
+
+
+.bugDiv{
+    width: 80%;
+    height: 5em;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 0.25em;
+    cursor: pointer;
+    margin: 2em auto;
+}
+
+.addBugBtn{
+    width: 5%;
+    height: 1em;
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7em;
+    transition: 0.5s;
+    border-color: black;
+    border-width: 0.3em;
+    border-radius: 0.8em;
+    cursor: pointer;
+    padding: 2em;
+    margin: auto;
 }
 
 .loginBtn{
@@ -120,6 +153,15 @@ input:focus{
 .loginBtn:hover{
     transform: scale(1.15);
 }
+
+.bugDiv:hover{
+    transform: scale(1.15);
+}
+
+.addBugBtn:hover{
+    transform: scale(1.15);
+}
+
 .registerBtn:hover{
     transform: scale(1.15);
 }

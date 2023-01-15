@@ -11,7 +11,7 @@ const Register = () => {
     const[projectName, setProjectName] = useState("");
     const navigate = useNavigate();
 
-    var idList = [];
+    var idListArray = [];
 
 
     async function registerBtn() {
@@ -57,18 +57,25 @@ const Register = () => {
 
         let user = JSON.parse(window.localStorage.getItem("user"));
 
-        // idList.push(data.idList);
+        // idListArray.push(data.idListArray);
+        console.log(data.idListArray);
         if(data.idList) {
-            idList = [...data.idList.split(","), user.email];
+            idListArray = [...data.idList.split(","), user.email];
         } else {
-            idList.push(user.email);
+            idListArray.push(user.email);
         }
-        // idList.push(user.email);
+        // idListArray.push(user.email);
 
-        console.log("idList", idList);
+        console.log("idListArray", idListArray);
 
-        let project = {idList}
-
+        var name = data.name;
+        var repoLink = data.repoLink;
+        var bugList = data.bugList;
+        var idList = String(idListArray);
+        let project = {name,repoLink,idList,bugList};
+        console.log("Id list", project);
+        console.log("projectResult Status ", projectResult.status);
+        console.log("data", data);
         if(projectResult.status == 201){
             let projectUpdated = await fetch(`http://localhost:8080/api/proiects/${projectName}` ,{
                 method: "PUT",

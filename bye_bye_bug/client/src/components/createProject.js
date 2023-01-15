@@ -7,9 +7,8 @@ import {useNavigate} from 'react-router-dom'
 const Proiect = (props) => {
     const[name, setName] = useState("");
     const[repoLink, setRepoLink] = useState("");
-    var idList = [];
-    var bugList = ["nimic"];
-    console.log(idList);
+    var idListArray = [];
+    var bugListArray = ["nimic"];
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,8 +31,10 @@ const Proiect = (props) => {
         //     },
         // })
         // console.log("id header", idHeader);
-        idList.push(user.email);
+        idListArray.push(user.email);
 
+        var idList = String(idListArray);
+        var bugList = String(bugListArray);
         let item = {name, repoLink, idList, bugList}
         let result = await fetch("http://localhost:8080/api/proiects" 
         // + new URLSearchParams({

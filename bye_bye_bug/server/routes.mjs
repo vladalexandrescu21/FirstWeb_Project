@@ -1,11 +1,13 @@
 import express from 'express';
 import { Account, Proiect, Bug } from './repository.mjs';
 import {
-    getRecords, postRecord, deleteRecords, getRecord, putRecord, headRecord, patchRecord, deleteRecord, checkLogin, checkProject
+    getRecords, postRecord, deleteRecords, getRecord, putRecord, headRecord, patchRecord, deleteRecord, checkLogin, checkProject,searchBugs
 } from './service.mjs'
 //import App from './src/App.js'
 
 const router = express.Router();
+
+router.route('/projectBugs').get((req, res) => { searchBugs(Bug,req, res)});
 
 router.route('/createProject').get((req, res) => { getIdList(Account,req, res)});
 
@@ -27,10 +29,13 @@ router.route('/accounts/:id')
 
 
 router.route('/proiects')
-    .get((req, res) =>  getRecord(Proiect, req, res))
+    .get((req, res) =>  getRecords(Proiect, req, res))
     .head((req, res) => headRecord(Proiect, req,res))
     .post((req, res) =>  postRecord(Proiect, req, res))
     .delete((req, res) =>  deleteRecords(Proiect, req, res))
+    .put((req, res) =>{
+        console.log("inside put pe proiects");
+        putRecord(Proiect, req,res)} )
 
 router.route('/proiects/:id')
     .get((req, res) =>  getRecord(Proiect, req, res))
@@ -43,7 +48,9 @@ router.route('/proiects/:id')
     .delete((req, res) =>  deleteRecord(Proiect, req, res))
 
 router.route('/bugs')
-    .get((req, res) =>  getRecords(Bug, req, res))
+    .get((req, res) =>  {
+        console.log("inside bugs get");
+        getRecords(Bug, req, res)})
     .post((req, res) =>  postRecord(Bug, req, res))
     .delete((req, res) =>  deleteRecords(Bug, req, res))
 

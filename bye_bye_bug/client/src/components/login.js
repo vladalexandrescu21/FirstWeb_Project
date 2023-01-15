@@ -3,7 +3,7 @@ import "./login.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Register from "./registerForm.js";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,11 +18,11 @@ const Login = () => {
     setTimeout(() => showPopup("hide"), 3000);
   };
 
-  useEffect(() => {
-    // if (localStorage.getItem("user-info")) {
-    //   navigate("/login");
-    // }
-  }, []);
+  // useEffect(() => {
+  //   // if (localStorage.getItem("user-info")) {
+  //   //   navigate("/login");
+  //   // }
+  // }, []);
 
   async function login() {
     console.warn(email, password);
@@ -34,13 +34,17 @@ const Login = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        "Accept": "application/json",
       },
     //   body: JSON.stringify(item),
     });
-    result = await result.json();
-    console.log(result);
-    localStorage.setItem("user-info", JSON.stringify(result));
+    //result = await result.json();
+    console.log(result.status);
+    if(result.status == 201){
+      localStorage.setItem("user-info", JSON.stringify(item));
+      console.log("result status", result.status)
+      navigate('/projectBugs', {replace: true});
+    }
     //navigate("/api/login");
   }
   async function register() {

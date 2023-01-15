@@ -50,11 +50,11 @@ const Proiect = sequelize.define('proiect', {
         allowNull: false
     },
     idList: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
         allowNull: true
     },
     bugList: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
         allowNull: true
     }
 });
@@ -65,25 +65,31 @@ const Bug = sequelize.define('bug', {
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true
+    }, 
+    bugName:{
+        type: DataTypes.STRING
     },
-   project: {
+    accountEmail:{
+        type: DataTypes.STRING
+    },
+   projectName: {
     type: DataTypes.STRING,
    },
    whoToSolve: {
-    type: DataTypes.UUID
+    type: DataTypes.STRING
    },
    isSolved: {
-    type: DataTypes.BOOLEAN
+    type: DataTypes.STRING
    },
    severity: {
     type: DataTypes.STRING
    },
    priority: {
-    type: DataTypes.INTEGER,
-    validate: {
-        min: 1,
-        max: 10
-    }
+    type: DataTypes.INTEGER
+    // validate: {
+    //     min: 1,
+    //     max: 10
+    // }
    },
    description: {
     type: DataTypes.STRING
@@ -93,11 +99,10 @@ const Bug = sequelize.define('bug', {
    }
 });
 
-Proiect.hasMany(Bug, {foreignKey: 'proiectId'});
-Bug.belongsTo(Proiect, {foreignKey: 'proiectId'});
+// Proiect.hasMany(Bug);
 
-Account.hasMany(Proiect, {foreignKey: 'accountId'});
-Proiect.belongsTo(Account, {foreignKey: 'accountId'});
+// Account.hasOne(Proiect, {foreignKey: 'accountId'});
+
 
 async function initialize() {
     await sequelize.authenticate();
